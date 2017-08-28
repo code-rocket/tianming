@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+<script src="themes/meilele/js/jq.js"></script>
+<script src="themes/meilele/js/jquery.json.min.js"></script>
+
+<link rel="stylesheet" href="themes/meilele/css/mll_common.min.css?1122" />
+<link href="themes/meilele/css/goods_wide.min.css?1112fv" rel="stylesheet" type="text/css" />
+{insert_scripts files='common.js,user.js,utils.js'}
+<script src="themes/meilele/js/common.js"></script>
+<link href="themes/meilele/css/magiczoom.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="themes/meilele/js//mzp-packed-me.js"></script>
+</head>
+<body>
+<script type="text/javascript">(function(){var screenWidth=window.screen.width;if(screenWidth>=1280){document.body.className="root_body";window.LOAD=true;}else{window.LOAD=false;}})()</script>
+
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> 
+{foreach from=get_advlist_by_id(15) item=ad name=index_image}
+<div class="w mt10 mb10 top_banner" style="height:60px;overflow:hidden;" id="JS_banner">
+  <div id="JS_banner_in">
+  <a href="{$ad.url}" title="{$ad.name}" target="_blank" style="display:block;height:60px;background:url({$ad.image}) center 0 no-repeat;"><img src="images/blank.gif" style="background:none" height="60" width="100%"></a>
+  </div>
+</div>
+{/foreach}
+<div id="JS_nav_guide" class="nav_guide w"><!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem --></div>
+
+<div class="goods_title w" id="JS_goods_title_34742">
+  <h1 class="goods_name"><span id="JS_attr_title_name">{$goods.goods_style_name}</span> <span class="goods_sn" id="JS_attr_title_sn">编号：{$goods.goods_sn}</span> <strong id="JS_attr_title_event" class="red f14"></strong> </span> </h1>
+  <h2 class="goods_sub_title red" id="JS_attr_sub_title"> {$goods.goods_brief} </h2>
+</div>
+<div class="w clearfix">
+  <div class="big_img Left">
+    <div id="JS_view_current_big_img">
+      <div class="img">
+        <div id="JS_attr_limit_buy" class="img_tags limit_buy" style="display:none"></div>
+      <a id="Zoomer" class="MagicZoomPlus" rel="" title="点击查看{$goods.goods_name|escape:html}图片"  href="{$pictures.0.img_url}" onclick="window.open('gallery.php?id={$goods.goods_id}'); return false;"> <img src="{$pictures.0.img_url}" width="680" height="374" alt="{$goods.goods_name|escape:html}" /> </a>
+      </div>
+      <a class="float_view" href="javascript:;" onclick="window.open('gallery.php?id={$goods.goods_id}'); return false;" title="点击查看{$goods.goods_name|escape:html}图片"></a> </div>
+	  <script language="javascript">
+	  var screenWidth=window.screen.width;
+	  if(screenWidth>=1280){
+	  		$('#Zoomer').attr('rel', 'selectors-effect:false;zoom-fade:true;background-opacity:70;zoom-width:620;zoom-height:372;caption-source:img:title;thumb-change:mouseover');
+		}else{
+			$('#Zoomer').attr('rel', 'selectors-effect:false;zoom-fade:true;background-opacity:70;zoom-width:410;zoom-height:372;caption-source:img:title;thumb-change:mouseover');
+		}
+	  
+	  </script>
+	  <!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
+    <div class="extra clearfix">
+      <div id="bdshare" class="Left bdshare_t bds_tools get-codes-bdshare">
+        <div class="bds_more extra_field share_bd"> <span class="extra_icon"></span><span class="extra_text">分享</span> </div>
+      </div>
+      <div id="JS_collect_2" class="Left extra_field collect" onClick="javascript:collect({$goods.goods_id})"> <span class="extra_icon"></span><span class="extra_text co red">收藏</span><span class="extra_text cd">已收藏</span> </div>
+
+      <span class="gray Right share_text">付款方式：<a class="pays gray" target="_blank" title="付款方式">支付宝|网银|刷卡</a></span>
+     
+    </div>
+  </div>
+  <div id="JS_panel_34742" class="panel Right current">
+    <div class="sale_price">
+      <p id="JS_panel_row_price_34742" class="gray"><span id="JS_panel_shop_price_34742" class="" style="font-size:14px;">市场价：<span class="yen"><del>{$goods.market_price}</del></span>&emsp;</span></p>
+      <div class="p_left" style="font-size:14px;"><span class="red" id="JS_panel_price_type_34742" >本站价：</span><span id="JS_panel_show_price_34742" class="red f24 yen bold" {if $goods.is_promote and $goods.gmt_end_time }style="font-size:12px; text-decoration:line-through"{/if}>{$goods.shop_price_formated}</span>&emsp;&emsp;
+        
+      </div>
+	  {if $goods.is_promote and $goods.gmt_end_time }
+	  <div class="p_left" style="font-size:14px;"><span class="red" id="JS_panel_price_type_34742" style="font-size:14px;">促销价：</span><span id="JS_panel_show_price_34742" class="red f24 yen bold">{$goods.promote_price}</span>&emsp;&emsp;
+        
+      </div>
+	  {/if}
+    </div>
+    <div class="infos clearfix" style="font-size:14px;">
+      <ul>
+	  <!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->
+	  {insert_scripts files='lefttime.js'}
+        <li class="gray" style="" id="JS_panel_activity_21994" >活 动：<span class="active"><span id="JS_panel_active_type_21994" class="active_type" style="font-size:14px;">限时促销</span><span class="time none" id="JS_panel_time_21994">剩余时间：<font class="f4" id="leftTime">{$lang.please_waiting}</font></span></span></li>
+	  <!--{/if}-->	
+	  <!--{if $goods.is_real eq 1}-->
+		<!--{if $regions}-->
+	 <!-- <li class="clearfix" id="JS_express_nav_34742">
+	  <div class="ps_litext gray">配送至：</div>
+	  {foreach from=$regions key=key item=value}
+	  {if $key == 0}
+	  <div class="nav1" id="JS_peisong_text_address_34742"><span id="JS_peisong_address_nav_34742">{$value.region_name}</span><span class="icon"></span></div>
+	  <div class="spot_mix" id="JS_stock_div_34742"> <span style="color:#FF0000" id="JS_stock_info_34742">{foreach from=$value.shippings item=shipping}{$shipping.shipping_name}:{if $goods.is_shipping}免运费 {else}{$shipping.shipping_price}元 {/if}{/foreach}</span> </div>
+	  {/if}
+	  {/foreach}
+	  <div class="ps_main" id="JS_express_type_34742">
+		<div class="select_area clearfix">
+		  <div class="container none" id="JS_peisong_address_34742" onMouseOver="GL[34742].showAdressBox()" onMouseOut="GL[34742].hideAddress();"> <a style="position:absolute;display:block;width: 16px;height: 16px;top:0;right: 0; background:#787878;color: #fff;line-height: 16px;text-align: center;" href="javascript: void(0);" onClick="GL[34742].hideAddress();return false;">✕</a>
+			<div class="d_list">
+			  <div class="province_name" id="JS_transfer_province_34742"> 
+			  {foreach from=$regions item=value}
+				<a href="javascript:;" class="province_list" onclick="show_shipping('{$value.region_name}','{foreach from=$value.shippings item=shipping}{$shipping.shipping_name}:{if $goods.is_shipping}免运费 {else}{$shipping.shipping_price}元 {/if}{/foreach}')">{$value.region_name}</a>
+			 {/foreach}
+
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</li>-->
+	<script>
+		function show_shipping(name,price)
+		{
+		document.getElementById("JS_peisong_address_nav_34742").innerHTML = name;
+		document.getElementById("JS_stock_info_34742").innerHTML = price;
+		}
+
+		</script>
+<!--{/if}-->
+<!--{/if}-->
+	  
+        <li class="gray" style="font-size:14px;">品&emsp;牌：<a href="{$goods.goods_brand_url}" >{$goods.goods_brand}</a></li>
+        <li class="gray" style="font-size:14px;">已&emsp;售：<a href="javascript:void(0);" id="JS_boughts_notes_34742" class="red" style="font-size:14px;"><span style="font-size:14px;" id="JS_boughts_number"><!--{foreach from=get_goods_ex($GLOBALS['smarty']->_var['goods']['goods_id']) item=goods_data name=get_goods_ex}--><!-- {if $smarty.foreach.get_goods_ex.iteration eq 1}-->{$goods_data.total_sells}<!-- {/if} --><!--{/foreach}--></span>件</a>&ensp;			
+          用户评分：<span style="font-size:14px;" class="pf pf_{$goods.comment_rank}"></span>（<a href="javascript:void(0);" id="JS_comment_scroll_34742" class="gray">已有<span id="JS_comment_num" class="JS_comment_num">0</span>人评价</a>）</li>
+        <li class="gray" style="font-size:14px;">承&emsp;诺：<!--由 <span class="red">天明眼镜</span> 发货并提供售后服务。--> 01.线上线下同价 &nbsp;&nbsp;02.免费港式验光&nbsp;&nbsp;03.7天退换&nbsp;&nbsp;04.终身保修 </li>
+        <li id="JS_panel_gift_34742" class="gray none"></li>
+       <!-- <li class="tips" id="JS_panel_tips_nav_34742">
+          
+          <div class="tips_i_box"><a id="JS_expr_url" class="tip_i first" target="_blank">到店体验</a><span class="line">|</span><a class="tip_i" target="_blank">45天退换</a><span class="line">|</span><a class="tip_i" target="_blank">质保三年</a><span class="line">|</span><a class="tip_i" target="_blank">价格保护</a></div>
+          <a href="javascript:void(0);" class="goods_kefu"></a></li>-->
+        
+      </ul>
+    </div>
+	<script language="javascript">
+	  function changeAtt(t) {
+		var obj = document.getElementById('spec_value_'+t.getAttribute("name"));
+		if (obj){
+			obj.checked='checked';
+		}
+		
+		for (var i = 0; i<t.parentNode.childNodes.length;i++) {
+				if (t.parentNode.childNodes[i].className == 'current') {
+					t.parentNode.childNodes[i].className = '';
+				}
+			}
+		t.className = "current";
+		changePrice();
+		}
+	  </script>
+	<form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+    <div id="JS_join_list" class="choose" style="font-size:14px;">
+	<!-- {* 开始循环所有可选属性 *} -->
+      <!-- {foreach from=$specification item=spec key=spec_key} -->
+	  <!-- {if $spec.attr_type eq 1} -->
+                      <!-- {if $cfg.goodsattr_style eq 1} -->
+      <dl class="clearfix">
+        <dt>{$spec.name}：</dt>
+        <dd>
+		<!-- {foreach from=$spec.values item=value key=key  name=spec_values} -->
+		<a class="{if $smarty.foreach.spec_values.index eq 0}current{/if}" onclick="changeAtt(this)" href="javascript:;" target="_self"  name="{$value.id}" title="{$value.label}">{$value.label}</a>
+		<input style="display:none" id="spec_value_{$value.id}" type="radio" name="spec_{$spec_key}" value="{$value.id}" {if $smarty.foreach.spec_values.index eq 0}checked{/if} />  
+            <!-- {/foreach} --> 
+		
+		</dd>
+      </dl>
+	  <input type="hidden" name="spec_list" value="{$key}" />
+				  <!-- {/if} -->
+			      <!-- {/if} --> 
+		<!-- {/foreach} -->
+      <!-- {* 结束循环可选属性 *} -->	
+      
+      <dl class="clearfix" style="font-size:14px;">
+        <dt>数&emsp;量：</dt>
+        <dd>
+          <input class="number" id="JS_goods_number_34742" value="1" name="number" onblur="changePrice();"/>
+          <strong class="number_panel"><a href="javascript:;" id="JS_goods_number_add_34742"></a><a href="javascript:;" id="JS_goods_number_del_34742"></a></strong> 件 <strong style="margin-left:20px">{$lang.amount}：</strong><font id="ECS_GOODS_AMOUNT" class="red f24 yen bold"></font></dd>
+      </dl>
+      <div class="buttons">
+      	<a class="buy"  href="javascript:addToCart({$goods.goods_id})" title=""></a>&nbsp;&nbsp;
+        <a class="theme-login" href="javascript:;"><img src="../images/goods2/posxx.png"></a>
+      </div>
+    </div>
+	</form>
+    
+    
+<link rel="stylesheet" href="themes/meilele/css/lanrenzhijia.css" media="all">
+
+<script>
+jQuery(document).ready(function($) {
+	$('.theme-login').click(function(){
+		$('.theme-popover-mask').fadeIn(100);
+		$('.theme-popover').slideDown(200);
+		
+		$.ajax({
+			   type:"POST",                         
+			   url:"shidai.php",
+			   data:{},                      
+			   dataType:"html",
+  
+				success:function(data)
+				{  
+				   
+				},
+				complete: function(XMLHttpRequest, textStatus){
+						var module=XMLHttpRequest.responseText;
+						// alert(module);
+						
+						$('#newdiv').html(module);   
+					 },
+
+		  }); 
+		
+		
+	})
+	$('.theme-poptit .close').click(function(){
+		$('.theme-popover-mask').fadeOut(100);
+		$('.theme-popover').slideUp(200);
+	})
+
+})
+</script>    
+<!--<div class="theme-buy">
+<a class="btn btn-primary btn-large theme-login" href="javascript:;">点击查看效果</a>
+</div>-->
+<div class="theme-popover" style="border:0px;">
+  <div class="theme-poptit">
+          <a href="javascript:;" title="关闭" class="close">×</a>
+          <h3>天明眼镜试戴</h3>
+     </div>
+   <div id="newdiv">
+   
+   </div>
+</div>
+<div class="theme-popover-mask"></div>
+  
+    
+  </div>
+</div>
+<div class="w clearfix group_area mt10">
+<!-- {if $package_goods_list || $fittings} -->
+<div id="JS_goods_group_left" class="Left group_l">
+<!-- {if $package_goods_list} -->
+  <div id="JS_goods_order_similar" class="similar mt10 none">
+    <h2 class="group_title">人气推荐</h2>
+    <ul id="JS_similar_order" class="tab_body" style="height:235px">
+	<!--{foreach from=get_cat_best_goods_4($GLOBALS['smarty']->_var['goods']['cat_id']) item=goods_item name=best_goods}-->
+      <li {if $smarty.foreach.best_goods.iteration eq 1}class="first"{/if}>
+        <div class="price yen red bold"><!-- {if $goods_item.promote_price neq ""} -->{$goods_item.promote_price}<!-- {else}-->{$goods_item.shop_price}<!--{/if}--></div>
+        <h4><em>{$smarty.foreach.best_goods.iteration}</em><a href="{$goods_item.url}" target="_blank" title="{$goods_item.name|escape:html}" class="JS_similar_ga">{$goods_item.short_name|truncate:8:"...":true}</a></h4>
+        <div class="goods_ex"> <a href="{$goods_item.url}" target="_blank" title="{$goods_item.name|escape:html}" class="JS_similar_ga"><img src="images/blank.gif" data-src="{$goods_item.thumb}" width="180" height="118"  alt="{$goods_item.name|escape:html}"/></a>
+          
+         
+        </div>
+      </li>
+	  <!--{/foreach}-->
+      
+    </ul>
+  </div>
+ <!-- {/if} --> 
+  <div id="JS_goods_rel_cat" class="rel_cat mt10 none">
+    <h2 class="group_title">相关分类</h2>
+    <div id="JS_rel_cat" class="tab_body"><!--{foreach from=get_categories_tree($GLOBALS['smarty']->_var['goods']['cat_id']) item=cat name=get_categories_tree}--><a href="{$cat.url}" target="_blank" title="{$cat.name|escape:html}">{$cat.name|escape:html}</a><!--{/foreach}-->
+</div>
+  </div>
+  
+</div>
+<!-- {/if} -->
+
+<div id="JS_goods_group_right" class="Right group_r">
+<!-- {if $package_goods_list} -->
+<div class="extra_area mt10">
+  <div class="extra_title clearfix">
+    <ul class="extra_abs Left" id="JS_tz_nav">
+	<!-- {foreach from=$package_goods_list item=package_goods name=package_goods_list} -->
+      <li data-index="{$smarty.foreach.package_goods_list.iteration}" {if $smarty.foreach.package_goods_list.iteration<2}data-init="1" class="current"{/if}>优惠套餐{$smarty.foreach.package_goods_list.iteration}</li>
+	<!-- {/foreach} -->  
+    </ul>
+    <a href="activity.php" target="_blank" class="Right more">更多套餐&gt;&gt;</a> </div>
+  <div id="JS_tz_body" class="tz_body">
+  <!-- {foreach from=$package_goods_list item=package_goods name=package_list} -->
+    <div id="JS_tz_s{$smarty.foreach.package_list.iteration}_list" class="peitao clearfix {if $smarty.foreach.package_list.iteration > 1}none{/if}">
+      <div class="main_goods Left">
+        <div class="img"><img id="JS_tz_main_img" src="{$goods.goods_img}" width="148" height="96" alt="{$goods.goods_name|escape:html}" /><span class="add"></span>
+          <div class="info"><span id="JS_peitao_main_name">{$goods.goods_name|escape:html}</span><br />
+            <span class="gray" id="JS_peitao_price_type">本站价：</span><span class="red yen" id="JS_peitao_show_price"><!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->{$goods.promote_price}<!--{else}-->{$goods.shop_price_formated}<!--{/if}--></span><br/>
+            </div>
+        </div>
+      </div>
+      <div class="tz_list Right clearfix">
+        <div class="tz_detail_r Right clearfix">
+          <div class="Left"> <span class="equal"></span> </div>
+          <div class="Right tz_buy">
+            <h4><a target="_blank" title="{$package_goods.act_name}">{$package_goods.act_name}</a></h4>
+            <p class="gray"><span class="red">套餐价：</span><span class="yen red bold f16">{$package_goods.package_price}</span> <br/>
+              总价：<del class="yen">{$package_goods.subtotal}</del><br/>
+              <span class="tz_save_icon"></span><span class="yen red bold">{$package_goods.saving}</span> </p>
+            <a href="javascript:addPackageToCart({$package_goods.act_id})" class="tz_button"></a> </div>
+        </div>
+        <div class="extra_goods Right">
+          <div class="stage">
+            <table id="JS_tz_s{$smarty.foreach.package_list.iteration}_table">
+              <tr>
+			  <!-- {foreach from=$package_goods.goods_list item=goods_list name=package_goods_goods_list} -->
+                <td><div class="list">
+              
+                    	 <div class="img_box"><a href="goods.php?id={$goods_list.goods_id}" title="{$goods_list.goods_name}" target="_blank"><img src="{$goods_list.goods_thumb}" alt="{$goods_list.goods_name}" width="148" height="96" /></a></div>
+                   
+                    
+                    <div class="info gray">
+                      <p><a href="goods.php?id={$goods_list.goods_id}" class="goods_name_x1" title="{$goods_list.goods_name}" target="_blank">{$goods_list.goods_name}</a></p>
+                      <p>本站价：<span class="red yen">{$goods_list.rank_price}</span></p>
+                     
+                    </div>
+                  </div></td>
+                <!-- {/foreach} -->
+              </tr>
+            </table>
+          </div>
+          <div class="nav"> <a id="JS_tz_s{$smarty.foreach.package_list.iteration}_left" class="toleft"></a> <a id="JS_tz_s{$smarty.foreach.package_list.iteration}_right" class="toright"></a> </div>
+        </div>
+      </div>
+    </div>
+	<!-- {/foreach} --> 
+	
+    
+	
+	
+	
+  </div>
+</div>
+<!-- {/if} -->
+<!-- {if $fittings} -->
+<div class="extra_area mt10">
+<div class="extra_title">
+  <ul id="JS_extra_change" class="extra_abs">
+    <li id="JS_extra_pt" class="current">推荐搭配</li>
+   
+  </ul>
+</div>
+<div id="JS_extra_pt_body" style="height:294px">
+
+  <div class="peitao pt_main clearfix peitao_has_sky">
+    <div class="main_goods Left">
+      <div class="img"><img id="JS_tz_main_img" src="{$goods.goods_img}" width="148" height="96" alt="{$goods.goods_name|escape:html}" /></div>
+      <div class="info">
+        <p title="{$goods.goods_name|escape:html}" id="JS_peitao_main_name" style="width:148px;height: 1.8em;overflow: hidden;">{$goods.goods_name|escape:html}</p>
+        <strong class="red yen" id="JS_peitao_show_price"><!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->{$goods.promote_price}<!--{else}-->{$goods.shop_price_formated}<!--{/if}--></strong>&emsp;</div>
+		<!--{foreach from=get_goods_ex($GLOBALS['smarty']->_var['goods']['goods_id']) item=goods_data name=get_goods_ex}-->
+			<!-- {if $smarty.foreach.get_goods_ex.iteration eq 1}-->
+			<input type="checkbox" checked=checked autocomplete="off" goods_id="{$goods.goods_id}" price1="{$goods_data.shop_price}" price2="{$goods_data.market_price}"  style="display:none" class="chk_fit">
+			<!-- {/if} -->
+			<!--{/foreach}-->
+    </div>
+    <div class="Left"><span class="add"></span></div>
+    <div class="extra_goods Right">
+      <div id="JS_pt_stage" class="stage" data-first="4">
+        <table id="JS_scroll_table">
+          <tr>
+		  <!--{foreach from=$fittings item=goods_item name=fittings}-->
+            <td data-index="0" class="ptItem_0 "><div class="list">
+                <div class="img_box"><a href="{$goods_item.url}" title="{$goods_item.name|escape:html}" target="_blank"><img src="images/blank.gif" data-src="{$goods_item.goods_thumb}" alt="{$goods_item.name|escape:html}" width="148" height="96" /></a></div>
+                <div class="info">
+                  <p><a href="{$goods_item.url}" class="goods_name_x1" title="{$goods_item.name|escape:html}" target="_blank">{$goods_item.short_name|escape:html}</a></p>
+                  <p class="gray"><span class="red yen bold">{$goods_item.fittings_price}</span> &emsp;
+                  <p class="gray" style="margin-top:5px;">
+                    <!--{foreach from=get_goods_ex($GLOBALS['smarty']->_var['goods_item']['goods_id']) item=goods_data name=get_goods_ex}--><!-- {if $smarty.foreach.get_goods_ex.iteration eq 1}--><input type="checkbox" checked="checked" autocomplete="off" goods_id="{$goods_item.goods_id}" onclick="sum_price()" price1="{$goods_data.shop_price}" price2="{$goods_data.market_price}" class="chk_fit"><!-- {/if} --><!--{/foreach}-->
+                   </p>
+                </div>
+				
+              </div></td>
+			<!--{/foreach}-->  
+            
+            
+          </tr>
+        </table>
+      </div>
+      <div class="nav"> <a id="JS_peitao_left" class="toleft"></a> <a id="JS_peitao_right" class="toright"></a> </div>
+    </div>
+  </div>
+  <div class="pt_result clearfix">
+    <div class="arrow"></div>
+    <div class="pt_result_l Left">
+	<p class="tips"><b>省了<font  id="fit_price3" class="red">0</font>元</b></p>
+	<p class="price_m">原  价：￥<span style="text-decoration:line-through" id="fit_price2">0.00</span>元
+	<span class="bold" style="margin-left:30px">总价：￥<strong class="red yen f16" id="fit_price1">0.00</strong>元</span>
+	</p>
+     </div>
+    <div class="pt_result_r Right"><a href="javascript:;" class="g2_btn1" onclick="addFittingsToCart()"></a></div>
+  </div>
+</div>
+<textarea id="JS_maiguo_textarea" class="none">
+		<div class="stage">
+				<table id="JS_maiguo_table"><tr>
+				{foreach from=$bought_goods item=bought_goods_data name=bought_goods}
+				{if $smarty.foreach.bought_goods.iteration < 5}
+										<td>
+						<div id="JS_maiguo_box_{$smarty.foreach.bought_goods.index}" class="maiguo_box">
+							<div class="img"><a href="{$bought_goods_data.url}" target="_blank" title="{$bought_goods_data.goods_name}"><img width="160" height="106" src="images/blank.gif" data-src="{$bought_goods_data.goods_thumb}" alt="{$bought_goods_data.goods_name}" /></a></div>
+							<div class="info c">
+								<a href="{$bought_goods_data.url}" class="goods_name_x1" target="_blank" title="{$bought_goods_data.goods_name}">{$bought_goods_data.short_name}</a>
+								<p class="gray">本站价：<strong class="red yen">{if $bought_goods_data.promote_price neq 0}{$bought_goods_data.formated_promote_price}{else}{$bought_goods_data.shop_price}{/if}</strong></p>
+								<a id="JS_maiguo_goods_0" href="javascript:void(0);" onclick="javascript:addToCart({$bought_goods_data.goods_id})" class="add_cart c bold">加入购物车</a>
+							</div>
+						</div>
+					</td>
+					{/if}
+					{/foreach}
+					
+									</tr></table>
+			</div>
+					</div>
+	</textarea>
+<script language="javascript">
+	var fittingsArr = new Array(); 
+	var fittingsArrLen = 0;
+	var addCartCount = 0;
+	function sum_price(){
+	    fittingsArr.length=0; 
+		var sum_price1 = 0.00;
+		var sum_price2 = 0.00;
+		$('.chk_fit').each(
+			function(){
+			    var chk = this.checked;
+				if (chk){
+					var price1 = $(this).attr('price1');
+					var price2 = $(this).attr('price2');
+					sum_price1 += price1*1;
+					sum_price2 += price2*1;
+					
+					fittingsArr.push($(this).attr('goods_id'));
+				}
+			}
+		);
+		$('#fit_price1').html(parseInt(sum_price1));
+		$('#fit_price2').html(parseInt(sum_price2));
+		$('#fit_price3').html(parseInt(sum_price2 - sum_price1));
+	}
+	sum_price();
+	function addFittingsToCart(){
+	      fittingsArrLen = fittingsArr.length;
+		  if (fittingsArrLen == 1){
+		  	alert('请选择套餐组合产品!');
+			return;
+		  }
+		  for (var i = 0; i < fittingsArr.length; i ++){
+
+			  var spec_arr     = new Array();
+			  var number       = 1;
+			  var quick		   = 0;
+  
+			  var goods        = new Object();
+			  var formBuy      = document.forms['ECS_FORMBUY'];
+			  goods.goods_id = fittingsArr[i];
+			  goods.number   = 1;
+			  goods.parent   = (typeof(parentId) == "undefined") ? 0 : parseInt(parentId);
+			  
+			  // 检查是否有商品规格 
+			  if (i == 0 && formBuy)
+			  {
+				spec_arr = getSelectedAttributes(formBuy);
+			
+				if (formBuy.elements['number'])
+				{
+				  number = formBuy.elements['number'].value;
+				}
+			
+				quick = 1;
+			  }
+			  
+			  goods.spec     = spec_arr;
+			  goods.number   = number;
+			  goods.quick    = quick;
+			  
+			  $.ajax({
+					type:"POST",
+					url:"flow.php?step=add_to_cart",
+					cache:false,
+					dataType:'json',     //接受数据格式
+					data:'goods=' + $.toJSON(goods),
+					success:addFittingsToCartResponse
+				});
+			  
+			  
+		  }
+		  
+	}
+	function addFittingsToCartResponse(result)
+	{
+	  if (result.error > 0)
+	  {
+		
+	  }
+	  else
+	  {
+			addCartCount = addCartCount + 1;
+			if (fittingsArrLen == addCartCount){
+				$.addToCart(result.goods_number, result.goods_price);
+				$('#cartInfo_number').html(result.goods_number);
+				
+				$.ajax({
+							type:"POST",
+							url:"flow.php?step=get_cart_list",
+							cache:false,
+							dataType:'json',     //接受数据格式
+							data:'',
+							success:function(result){
+								$('#JS_header_cart_list').html(result.message);
+							}
+						});
+			}
+	  }
+	}
+	</script>
+</div>
+<!-- {/if} -->
+
+
+
+</div>
+</div>
+
+<div class="w clearfix mt10">
+  <div class="main_left Left">
+    <h2 class="group_title">大家还买了</h2>
+    <ul class="tab_body">
+	{foreach from=$bought_goods item=bought_goods_data name=bought_goods}
+				{if $smarty.foreach.bought_goods.iteration < 5}
+      <li {if $smarty.foreach.bought_goods.iteration eq 1}class="first"{/if}>
+        <div class="img"> <a href="{$bought_goods_data.url}" title="{$bought_goods_data.goods_name}" target="_blank"> <img src="images/blank.gif" data-src="{$bought_goods_data.goods_thumb}" width="178" height="116" alt="{$bought_goods_data.goods_name}" /> </a> </div>
+        <div class="info c"> <a href="{$bought_goods_data.url}" title="{$bought_goods_data.goods_name}" target="_blank">{$bought_goods_data.short_name}</a>
+          <p><span>本站价：</span><span class="yen red">{if $bought_goods_data.promote_price neq 0}{$bought_goods_data.formated_promote_price}{else}{$bought_goods_data.shop_price}{/if}</span></p>
+        </div>
+      </li>
+	  {/if}
+	  {/foreach}
+      
+    </ul>
+    <h2 class="group_title mt10">大家还浏览了</h2>
+    <ul class="tab_body">
+	<!--{foreach from=$related_goods item=releated_goods_data}-->
+      <li class="first">
+        <div class="img"> <a href="{$releated_goods_data.url}" title="{$releated_goods_data.goods_name}" target="_blank"> <img src="images/blank.gif" data-src="{$releated_goods_data.goods_thumb}" width="178" height="116" alt="{$releated_goods_data.goods_name}" /> </a> </div>
+        <div class="info c"> <a href="{$releated_goods_data.url}" title="{$releated_goods_data.goods_name}" target="_blank">{$releated_goods_data.short_name}</a>
+          <p><span>本站价：</span><span class="yen red"><!-- {if $releated_goods_data.promote_price neq 0} -->{$releated_goods_data.formated_promote_price}<!-- {else} -->{$releated_goods_data.shop_price}<!-- {/if} --></span></p>
+        </div>
+      </li>
+     <!--{/foreach}--> 
+    </ul>
+  </div>
+  <div class="main_right Right">
+    <div class="navs">
+      <div style="height:0px;position:absolute;" id="JS_float_navs_position"></div>
+      <div class="float_navs" id="JS_float_navs"><a class="current first" href="javascript:;" id="JS_Tab_nav_xinxi">商品详情</a><a href="javascript:;" id="JS_Tab_nav_guige">配镜指南</a><a href="javascript:;" id="JS_Tab_nav_expr" style="display:none;">体验馆<span id="JS_count_expr" class="gray"></span></a><a href="javascript:;" id="JS_Tab_nav_pingjia">客户评价</a><a href="javascript:;" id="JS_Tab_nav_sheji" style="display:none">设计搭配</a><a href="javascript:;" id="JS_Tab_nav_jilu">购买记录</a><a href="javascript:;" id="JS_Tab_nav_zixun" style="display:none;">商品咨询<span id="JS_count_zixun" class="gray"></span></a><!--<a href="javascript:;" id="JS_Tab_nav_shouhou">售后服务</a>--><!--<a href="javascript:;" id="JS_Tab_nav_wenti">常见问题</a>--><a href="javascript:;" id="JS_Tab_nav_xuzhi" style="display:none;">购买须知</a><span href="javascript:void(0);" id="JS_quickly_buy" class="quickly_buy" onClick="javascript:addToCart({$goods.goods_id})"></span></div>
+    </div>
+    <div class="xinxi clearfix mt10" id="JS_Tab_body_xinxi">
+      
+      <div class="tupian mt10">
+        {$goods.goods_desc}
+        <div class="mt10"></div>
+        <div class="img_point mt10">
+          <div class="tab_title"><span class="icon"></span>
+            <h2 class="f16">商品详情</h2>
+          </div>
+          <div class="point_c">
+           <!-- <dl>
+              <dt class="c f14 yen">01</dt>
+              <dd><span class="f14 bold">物流运输</span>：当您选择了物流运输，货物是从发货地送到您所在城市的物流点，<span class="red">需要您到指定的物流点自提</span>，不会送到具体的行政区。<span class="red">物流点提货时请注意携带收货人本人身份证原件</span>，如需他人代收请告知具体签收注意事项。</dd>
+            </dl>
+            <dl>
+              <dt class="c f14 yen">02</dt>
+              <dd><span class="f14 bold">体验馆配送安装</span>：当您选择了体验馆配送安装，体验馆安排物流运输、送货、专业安装整个流程，可通过电梯上楼的免上楼费（<span class="red">免3层及以下楼层的费用</span>）；没有电梯或大件商品进不了电梯<span class="red">需要人力搬运，需加收每件每层<span class="bold">10元 </span>(从第4层算起) 的搬运费</span>。请您就收货地址的特殊情况（垄断搬运服务、电梯或楼道太小、房门太窄、施工故障、道路修建、小区不支持货车进入或停留等）事先与客服沟通说明，以便后期送货服务的顺利进行。</dd>
+            </dl>
+            <dl>
+              <dt class="c f14 yen">03</dt>
+              <dd><span class="f14 bold">快递运输</span>：由快递公司送货到您所留的收货地址楼下。请您务必在签收前当场拆包检查，如有购买多件商品请一定拆开清点件数，拆包后<span class="red">如发现商品损坏请当场拒收并及时与我们联系</span>，商品货损与总件数以您签收为准，如果条件允许请您拍照取证。</dd>
+            </dl>
+            <dl>
+              <dt class="c f14 yen">04</dt>
+              <dd><span class="f14 bold">第三方配送（快递配送到楼下）</span>：全国范围内均可快递配送第三方商家商品。</dd>
+            </dl>-->
+           <!-- <div class="point_m c"> <img src="images/blank.gif" data-src="images/img_point.png" alt="购物温馨提示" tiltle="购物温馨提示" width="654" height="404" /> </div>-->
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="guige mt10" id="JS_Tab_body_guige">
+      <div class="tab_title"> <span class="icon"></span>
+        <h2>配镜指南</h2>
+      </div>
+      <table class="norm_info mt10">
+        <tr>
+        	<th><img src="themes/meilele/images/goods2/zhinan.jpg" width="100%"></th>
+        </tr>
+
+       <!-- <tr>
+          <th colspan="2" class="norm_title f14">配镜指南</th>
+        </tr>-->
+		<!-- {foreach from=$properties item=property_group key=key} -->
+		<!-- {foreach from=$property_group item=property} -->
+       <!-- <tr>
+          <th class="r norm_left">{$property.name|escape:html}</th>
+          <td>{$property.value}</td>
+        </tr>-->
+        <!-- {/foreach}-->
+        <!-- {/foreach}-->
+		
+      </table>
+    </div>
+    <div class="expr mt10" id="JS_Tab_body_expr"> </div>
+    <div class="sheji mt10 heihei" id="JS_Tab_body_sheji"> </div>
+    <div class="jilu mt10" id="JS_Tab_body_jilu">
+      <div class="tab_title"> <span class="icon"></span>
+        <h2>购买记录</h2>
+      </div>
+<div id="ECS_BOUGHT">{* ECSHOP 提醒您：动态载入bought_notes.lbi，显示当前商品的购买记录 *}{insert name='bought_notes' id=$id}</div>
+    </div>
+   <!-- <div class="shouhou mt10" id="JS_Tab_body_shouhou">
+      <div class="tab_title"> <span class="icon"></span>
+        <h2>售后服务</h2>
+      </div>
+      <div class="tab_body">
+        <div class="list clearfix"> <span class="icon Left"></span>
+          <p class="Right"> <strong>退货和流程：</strong><br/>
+            <a class="red" target="_blank"><u>45 天无理由退货</u></a>，因质量问题退换，商家承担邮费；非质量问题退换，仅限正价商品，买家承担邮费。影响二次销售的产品不能退换货。定制类产品非质量问题不能退换货。已明确注明“不予退换”的商品不能退换货。</p>
+        </div>
+        <div class="list list2 clearfix"> <span class="icon Left"></span>
+          <p class="Right"> <strong>商品保修：</strong><br/>
+            家具类商品的保修期限为<span class="red">三年</span>，建材类商品保修期限为<span class="red">一年</span>。在我们网站购买商品的客户均将自动成为我们的VIP客户，我们承诺为您的家具提供终身维护。 </p>
+        </div>
+        <div class="list list3 clearfix"> <span class="icon Left"></span>
+          <p class="Right"> <strong>施工指导：</strong><br/>
+            客户拿到我们的装修方案后，我们有专人可以提供方案的施工指导服务（电话或网络）。 </p>
+        </div>
+      </div>
+    </div>-->
+    <div class="xuzhi mt10" id="JS_Tab_body_xuzhi"> </div>
+    <a name="pj"></a>
+    <div class="pingjia mt10" id="JS_Tab_body_pingjia">
+      <div class="tab_title"> <span class="icon"></span>
+        <h2>客户评价</h2>
+      </div>
+	  <script language="javascript">
+			var comment_rank = "{insert name='comments_rank' id=$id}";
+			</script>
+      <div id="ECS_COMMENT"> {* ECSHOP 提醒您：动态载入comments_list.lbi，显示评论列表和评论表单 *}{insert name='comments' type=$type id=$id}</div>
+    </div>
+    <div class="zixun mt10" id="JS_Tab_body_zixun" style="display:none">
+      <div class="tab_title"> <span class="icon"></span>
+        <h2>商品咨询</h2>
+      </div>
+      <div class="tab_body"> <div class="c gray">暂无咨询。</div></div>
+    </div>
+    <div class="wenti mt10" id="JS_Tab_body_wenti">
+      <div class="tab_title"> <span class="icon Left"></span>
+        <h2>常见问题解答</h2>
+      </div>
+      <div class="tab_body">
+        <ul class="went_tab JS_wenti_tab clearfix">
+          <li class="Left JS_wenti_tab_goods current" data-type="goods"><i class="goods_icon"></i>商品相关</li>
+          <li class="Left JS_wenti_tab_trans" data-type="trans"><i class="trans_icon"></i>物流配送</li>
+          <li class="Left JS_wenti_tab_shouhou" data-type="shouhou"><i class="shouhou_icon"></i>售后问题</li>
+          <li class="Left JS_wenti_tab_pay" data-type="pay"><i class="pay_icon"></i>付款相关</li>
+        </ul>
+        <div class="went_body JS_went_body_goods">
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">如何定制套镜（购买流程）？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">1. 挑选镜架；2.勾选套餐镜片；3. 结算页填写验光单；详细说明：http://www.eachsee.com/article-9.html<!--<a class="red" target="_blank" href="expr.php"><u>查看全国体验馆</u></a>--></p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">如何鉴别产品真伪？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">亿视丽眼镜网所售商品全部为正规渠道进货，100%保真。精工、李维斯等品牌镜架有防伪标签，刮开可到官网查询真伪。依视路、明月等品牌镜片上有防伪雾显标识，镜片包装上有防伪编码，刮开可到官网查询真伪。</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">网上的产品和体验馆的产品在价格、质量等方面是否有区别？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">体验馆售价与网站统一；所展出的商品均为工厂直接发货，货源与您收到的商品是一致的，请您放心购买。</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">网上配眼镜需要哪些数据？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">首先您要拥有一份准确的验光单，其中包括：配镜者左右眼的近视/远视度数；以及双眼瞳距；如果有散光，还需要提供散光度数以及散光的轴位！</p>
+            </div>
+          </div>
+        </div>
+        <div class="went_body JS_went_body_trans none">
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">订单什么时候发货？多久到货？?</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">非定制镜片：12点之前的订单当天可以发货。顺丰：全国一般地区1-2天，偏远地区（新疆等）2-3天到货。圆通：全国一般地区2-3天，偏远地区（新疆等）3-5天到货。</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">配好的镜片不合适能退换吗？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">订单镜片是严格按照您的验光单数据来定制的，因镜片属于定制类产品，非质量问题一经加工就无法退换。请您在下单之前，务必确认验光单度数的准确性。</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">商品包邮吗？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">由于各地物流费差异较大，标价没有包含运费；且美乐乐的商品是工厂直销，价格已经是最低了，就算产品加上运费性价比也很高。但有部分做活动的商品可以提供包邮。</p>
+            </div>
+          </div>
+        </div>
+        <div class="went_body JS_went_body_shouhou none">
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">配镜有何售后服务保障?</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">1. 亿视丽配镜严格按国标2011执行：多道质检环节，不达标2倍退款！2. 30天包退换：免除质量问题后顾之忧！亿视丽退换货政策：http://www.eachsee.com/article-9.html</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">没有体验馆的城市怎么售后？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">天明眼镜自成立以来，在全国大部分地方建立了较完善的售后服务网络，没有体验馆的城市，我们也有合作的维修师傅，能为您提供优质完善的售后服务，请放心购买。</p>
+            </div>
+          </div>
+        </div>
+        <div class="went_body JS_went_body_pay none">
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">付款方式有哪几种呢？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">天明眼镜为在线购买的客户提供了网银在线支付、信用卡支付、支付平台支付（支付宝、易宝支付、财付通）、银行柜台转账汇款四种支付方式。您也可以到就近的体验馆使用现金支付、POS机刷卡支付。</p>
+            </div>
+          </div>
+          <div class="list">
+            <div class="question clearfix"><span class="icon Left"></span><strong class="Right">可以货到付款吗？为什么不能货到付款？先付款给你们有什么保障？</strong></div>
+            <div class="answer clearfix"><span class="icon Left"></span>
+              <p class="Right">由于目前国内物流到付风险较大，为了保证您的资金安全，天明眼镜暂时不支持货到付款服务。本网站经过ICP备案，同时也是支付宝特约商家，全国有N多家实体体验馆，您可以放心订购！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<script type="text/javascript">
+var goods_id = {$goods_id};
+var goodsattr_style = {$cfg.goodsattr_style|default:1};
+var gmt_end_time = {$promote_end_time|default:0};
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var goodsId = {$goods_id};
+var now_time = {$now_time};
+
+onload = function(){
+  changePrice();
+  try { onload_leftTime(); }
+  catch (e) {}
+}
+
+/**
+ * 点选可选属性或改变数量时修改商品价格的函数
+ */
+function changePrice()
+{
+  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+  var qty = document.forms['ECS_FORMBUY'].elements['number'].value;
+  
+  $.ajax({
+					type:"GET",
+					url:"goods.php",
+					cache:false,
+					dataType:'json',     //接受数据格式
+					data:'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty,
+					success:changePriceResponse
+				});
+
+}
+
+/**
+ * 接收返回的信息
+ */
+function changePriceResponse(res)
+{
+  if (res.err_msg.length > 0)
+  {
+    alert(res.err_msg);
+  }
+  else
+  {
+    document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+
+    if (document.getElementById('ECS_GOODS_AMOUNT'))
+      document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+  }
+}
+
+<!-- {/literal} -->
+</script>
+
+
+<script type="text/javascript" src="themes/meilele/js/back_to_top.min.js?1121fv"></script>
+<script type="text/javascript" src="themes/meilele/js/goods_wide.min.js?1121fv"></script>
+<script type="text/javascript">
+
+GL['34742'] = new Good({
+	"goods_id": "34742",
+	"show_type": "0",
+	"goods_thumb_1": "",
+	"ship_type": "1",
+	"is_logistics": "0",
+	"is_delete": "0",
+	"is_on_sale": "1",
+	"is_parent_goods": "0",
+	"calc_type": "1",
+	"goods_weight": "0",
+	"goods_sn": "",
+	"cloth_goods_id": "",
+	"goods_volume": "0.1952",
+	"stock_volumn": "0.1952",
+	"goods_name": "",
+	"limit_sale": "0",
+	"discount_price": "0.00",
+	"goods_thumb": "",
+	"style_id": "303",
+	"cat_id": "275",
+	"brand_id": "213",
+	"material_id": "304",
+	"goods_attribute": "0",
+	"shop_id": "1",
+	"shop_name": "",
+	"cname": "",
+	"style_name": "",
+	"brand_name": "",
+	"discount_type": "1",
+	"red_title": "",
+	"clo_goods_id": null,
+	"material_name": "",
+	"add_time": "1308695210",
+	"quotiety": "0.00",
+	"img_leftshow_text": "0",
+	"goods_list_tag": "0",
+	"real_unit_use": "0",
+	"change_unit_use": "1",
+	"change_unit_ratio": "1.00000",
+	"goods_unitname": "",
+	"discount_name": "",
+	"is_fitment": 0,
+	"is_haier": 0,
+	"is_redpacket": 0,
+	"chandi": "",
+	"brand_url": "",
+	"style_url": "",
+	"material_url": "",
+	"price_type": {
+		
+	},
+	"activity_type": "",
+	"goods_activity_name": [],
+	"favourite_num": 8287,
+	"click": 7587,
+	"sales_num": "1071",
+	"attr_info": {
+		"color_list": false,
+		"spec_list": {
+			
+		},
+		"sofa_list": false,
+		"material_list": false
+	},
+	"join_list": null,
+	"page_title": "",
+	"real_unit_use_name": "",
+	"change_unit_use_name": "",
+	"relate_parent": [],
+	"relate_show": [],
+	"pinyin": "dianshigui",
+	"exchange_limit": null
+});
+goodsInit();
+</script>
+
+<script type="text/javascript" id="bdshare_js" data="type=tools"></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+</script>
+
+</body>
+</html>

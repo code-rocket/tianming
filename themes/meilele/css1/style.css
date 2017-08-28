@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+body{background:#fff; color:#333;font-weight:500; font-family:'Microsoft Yahei';}
+
+
+.focus{height:246px;width:895px;}
+.focus .left{float:left; padding:0 10px 10px 10px; width:575px; height:236px; position:relative;overflow:hidden; border-right:1px solid #ddd;}
+.focus .left li{position:absolute; left:0; top:0; width:895px; height:246px; z-index:1; opacity:0; filter:alpha(opacity=0);}
+.focus .left li.active{z-index:2;}
+.focus .left li p{display:none;}
+
+.focus .right{float:right; width:290px; border:1px solid #ddd; height:246px;}
+.focus .right li{width:143px; height:60px; overflow:hidden;/* padding-left:10px;*/ color:#000; font-size:14px; line-height:60px; cursor: pointer;  float:left; text-align:center; border:1px solid #ddd; border-top:0px; border-right:0px;}
+.focus .right li:hover,.focus .right li.active{color:red; }
+.focus .right li i{ width:60px; height:60px; float:left;/* margin:15px 19px 0px 0;*/}

@@ -1,0 +1,73 @@
+<!-- $Id: goods_list.htm 17126 2010-04-23 10:30:26Z liuhui $ -->
+{include file="pageheader.htm"}
+<style>
+.action-span
+{
+	position:absolute; right:200px; top:15px;
+}
+.action-span a {
+	
+    color: #666;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+    padding: 2px 5px 2px 23px;
+    border: 1px solid #278296;
+    border-right: 2px solid #278296;
+    border-bottom: 2px solid #278296;
+    background: #DDEEF2 url(../images/icon_add.gif) no-repeat 3px center;
+	width:101px;
+}
+
+</style>
+<span class="action-span" style="width:101px;"><a href="goods.php?act=goods_color_add&goods_id={$goods_id}">添加新商品</a></span>
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<!-- 商品搜索 -->
+
+<!-- 商品列表 -->
+<form method="post" action="" name="listForm" onsubmit="return confirmSubmit(this)">
+  <!-- start goods list -->
+  <div class="list-div" id="listDiv">
+  
+
+
+<table cellpadding="3" cellspacing="1" style="text-align:center;">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
+      <a href="javascript:listTable.sort('col_id'); ">{$lang.record_id}</a>{$sort_goods_id}
+    </th>
+    <th><a href="javascript:listTable.sort('color_name'); ">颜色名称</a>{$sort_goods_name}</th>
+    <th><a href="javascript:listTable.sort('color'); ">颜色</a>{$sort_goods_sn}</th>
+    <th><a href="javascript:listTable.sort('img'); ">图片</a>{$sort_shop_price}</th>
+    
+    <th><a href="javascript:listTable.sort('img'); ">{$lang.handler}</a></th>
+  <tr>
+  {foreach from=$goods_color_list item=goods}
+  <tr>
+    <td><input type="checkbox" name="checkboxes[]" value="{$goods.col_id}" />{$goods.col_id}</td>
+    <td>{$goods.color_name}</td>
+    <td>{$goods.color}</td>
+    <td align="right">
+    {if $goods.img}
+    <a href="../{$goods.img}">
+    <img src="images/picflag.gif" width="16" height="16" border="0" alt="品牌LOGO">
+    </a>
+    {/if}
+    </td>
+    <td>
+    <a href="goods.php?act=goods_color_edit&col_id={$goods.col_id}&goods_id={$goods_id}" title="{$lang.edit}">
+    <img src="images/icon_edit.gif" width="16" height="16" border="0" />
+    </a>
+    <a href="goods.php?act=goods_color_delete&col_id={$goods.col_id}&goods_id={$goods_id}"><img src="images/icon_trash.gif" width="16" height="16" border="0" /></a>
+    </td>
+  {foreachelse}
+  <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+  {/foreach}
+</table>
+</div>
+</form>
+
+<!-- end goods list -->

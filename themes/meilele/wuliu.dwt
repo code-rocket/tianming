@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天明物流跟踪</title>
+</head>
+<body>
+<div class="mt10" id="queryContext">
+    <empty name="res">
+        <notempty name="searchErr">
+            <div class="searchErr">{$searchErr}</div>
+        </notempty>
+        <else/>
+        <div class="result-top"><span class="col1">时间</span><span class="col2">地点和跟踪进度</span></div>
+        <table cellspacing="0" class="result-info2" id="queryResult2">
+            <tbody>
+            <volist name="res['data']" id="item">
+            {foreach item=item name=loop from=$res.data}
+                {if $smarty.foreach.loop.first}
+                        <tr>
+                            <td class="row1">{$item.time}</td>
+                            <td class="status status-first">&nbsp;</td>
+                            <td>{$item.context}</td>
+                        </tr>
+                   {elseif $smarty.foreach.loop.last}
+                        <tr class="last">
+                            <td class="row1">{$item.time}</td>
+                            <td class="status status-check">&nbsp;</td>
+                            <td>{$item.context}</td>
+                        </tr>
+                    {else}
+                    <tr>
+                        <td class="row1">{$item.time}</td>
+                        <td class="status">&nbsp;</td>
+                        <td>{$item.context}</td>
+                    </tr>
+               {/if}
+            {/foreach}
+            </tbody>
+        </table>
+    </empty>
+</div>
+<style type="text/css">
+    .result-top {
+        background-color: #fbfbfb;
+        border-color: #90bfff;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 1px medium;
+        height: 43px;
+        line-height: 43px;
+        width: 608px;
+    }
+
+    .result-top .col1 {
+        border-right: 1px solid #ddd;
+        color: #333;
+        font-weight: bold;
+        text-align: center;
+        width: 184px;
+        display: block;
+        float: left;
+    }
+
+    .result-top .col2 {
+        color: #333;
+        font-weight: bold;
+        text-align: center;
+        width: 303px;
+        display: block;
+        float: left;
+    }
+
+    .result-info2 {
+        border-top: 1px solid #ddd;
+        border-right: 1px solid #90bfff;
+        border-bottom: 1px solid #90bfff;
+        border-left: 1px solid #90bfff;
+        width: 610px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .result-info2 .row1 {
+        text-align: right;
+        width: 140px;
+    }
+
+    .result-info2 td {
+        background-color: #fbfbfb;
+        border-bottom: 1px solid #d8d8d8;
+        color: #878787;
+        padding: 10px;
+    }
+
+    .result-info2 .status {
+        background: #fbfbfb url("//cdn.kuaidi100.com/images/ico_status.gif") no-repeat scroll -50px center;
+        width: 30px;
+    }
+
+    .result-info2 .status-first {
+        background: #fbfbfb url("//cdn.kuaidi100.com/images/ico_status.gif") no-repeat scroll 0 center;
+    }
+
+    .result-info2 .last td {
+        background-color: #ffffff;
+        border-bottom: medium none;
+        color: #ff8c00;
+    }
+
+    .result-info2 .status-check {
+        background: #fbfbfb url("//cdn.kuaidi100.com/images/ico_status.gif") no-repeat scroll -150px center;
+    }
+
+    .searchErr {
+        color: #999;
+        margin-left: 97px;
+        margin-top: 21px;
+    }
+</style>
+</body>
+</html>

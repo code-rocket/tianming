@@ -1,0 +1,63 @@
+<!-- $Id: brand_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<div class="main-div">
+    <form method="post" action="goods_booking.php?act=transfer_cargo1" name="theForm" enctype="multipart/form-data"
+          onsubmit="return validate()">
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <input type="hidden" name="rec_id" value="{$booking.rec_id}">
+            
+          
+            <tr>
+                <td class="label">商品id</td>
+                <td>{$booking.goods_id}</td>
+            </tr>
+            <tr>
+                <td class="label">商品名</td>
+                <td>{$booking.goods_name}</td>
+            </tr>
+            <tr>
+                <td class="label">申请店铺</td>
+                <td>{$apply_user.suppliers_name}</td>
+            </tr>
+            <tr>
+                <td class="label">发货店铺</td>
+                <td>
+                    <label>{$send_user.suppliers_name}</label>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="label">利益分配</td>
+                <td><label>{$apply_info.proportion_a}</label>/<label>{$apply_info.proportion_b}</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><br/>
+                    <input type="button" class="button" onclick="javascript:history.go(-1)" value="返回"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+    <!--
+    document.forms['theForm'].elements['brand_name'].focus();
+    onload = function () {
+        // 开始检查订单
+        startCheckOrder();
+    }
+    /**
+     * 检查表单输入的数据
+     */
+    function validate() {
+        validator = new Validator("theForm");
+        validator.required("brand_name", no_brandname);
+        validator.isNumber("sort_order", require_num, true);
+        return validator.passed();
+    }
+    //-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

@@ -1,0 +1,23 @@
+/* CSS Document */
+.nav_box_tab{  max-width:640px; height:auto; margin:auto;}
+#tab { max-width:640px; height:auto; position:relative; margin:auto;}
+/*设置容器高宽等*/
+html > body #tab { width:100%;}
+/*兼容IE6:IE6下宽度不够*/
+#tab div { position:absolute; top:60px; left:0; width:96%; height:auto;}
+/*设置容器高宽等*/
+#tab div { display:none;}
+/*设置容器默认隐藏:不用ID是因为下面将利用class来控制容器显示,而class优先级低于id选择器*/
+#tab .block { display:block; padding:0 5px 10px 5px; margin-top:5px;}
+/*选中的容器*/
+#tab h3 { float:left;width:49%; height:60px; line-height:60px; margin:0 0 0 0; font-size:1.2em; cursor:pointer; border:1px solid #ccc; background-color:#FFF; text-align:center; color:#5a5a5a; font-family:Microsoft YaHei;font-weight:normal;}
+/*默认标题样式*/
+#tab .up {color:#0292cf;}
+/*选中的标题样式*/
+/*修饰列表内容*/
+#tab ul { list-style:none; padding:0; height:auto; margin-top:0px;}
+.img_span{ width:153px; height:60px; margin-left:30%;}
+.img_box{ margin:auto;}
+
+
+

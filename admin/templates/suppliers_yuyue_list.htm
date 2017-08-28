@@ -1,0 +1,109 @@
+<!-- $Id: comment_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<form method="POST" action="comment_manage.php?act=batch_drop" name="listForm" onsubmit="return confirm_bath()">
+
+<!-- start comment list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>
+      <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox">
+      <a href="javascript:listTable.sort('comment_id'); ">{$lang.record_id}</a> {$sort_comment_id}</th>
+    <th>预约门店</th>
+    <th>手机号</th>
+    <th>需求</th>
+    <th>添加时间</th>
+    <th>是否查看</th>
+    <th>{$lang.comment_flag}</th>
+    <th>{$lang.handler}</th>
+  </tr>
+  {foreach from=$comment_list item=comment}
+  <tr>
+    <td><input value="{$comment.sup_yuyue_id}" name="checkboxes[]" type="checkbox">{$comment.comment_id}</td>
+    <td>{$comment.title}</td>
+    <td>{$comment.tel}</td>
+    <td>{$comment.content}</td>
+    <td>{$comment.datetime}</td>
+    <td align="center">{$comment.add_time}</td>
+    <td>{$comment.is_read}</td>
+    <td align="center">
+      <a href="suppliers_yuyue.php?act=reply&amp;id={$comment.sup_yuyue_id}">查看详情</a> |
+      <a href="javascript:" onclick="listTable.remove({$comment.sup_yuyue_id}, '{$lang.drop_confirm}')">{$lang.remove}</a>
+    </td>
+  </tr>
+    {foreachelse}
+    <tr><td class="no-records" colspan="10">{$lang.no_records}</td></tr>
+    {/foreach}
+  </table>
+
+  <table cellpadding="4" cellspacing="0">
+    <tr>
+      <td>
+      <div>
+     
+     </div></td>
+      <td align="right">{include file="page.htm"}</td>
+    </tr>
+  </table>
+
+{if $full_page}
+</div>
+<!-- end comment list -->
+
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+  cfm = new Object();
+  cfm['allow'] = '{$lang.cfm_allow}';
+  cfm['remove'] = '{$lang.cfm_remove}';
+  cfm['deny'] = '{$lang.cfm_deny}';
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+
+  {literal}
+  onload = function()
+  {
+      document.forms['searchForm'].elements['keyword'].focus();
+      // 开始检查订单
+      startCheckOrder();
+  }
+  /**
+   * 搜索评论
+   */
+  function searchComment()
+  {
+      var keyword = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+      if (keyword.length > 0)
+      {
+        listTable.filter['keywords'] = keyword;
+        listTable.filter.page = 1;
+        listTable.loadList();
+      }
+      else
+      {
+          document.forms['searchForm'].elements['keyword'].focus();
+      }
+  }
+  {/literal}
+
+  function confirm_bath()
+  {
+    var action = document.forms['listForm'].elements['sel_action'].value;
+
+    return confirm(cfm[action]);
+  }
+//-->
+</script>
+{include file="pagefooter.htm"}
+{/if}

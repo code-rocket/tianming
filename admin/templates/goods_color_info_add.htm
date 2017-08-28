@@ -1,0 +1,135 @@
+
+<style>
+
+h1 {
+    display: block;
+    font-size: 2em;
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+	
+}
+
+h1 {
+    background: #F4FAFB;
+    border: 1px solid #BBDDE5;
+    color: #9CACAF;
+    font-size: 14px;
+    padding: 7px 10px;
+    margin: 0 0 10px 0;
+    overflow: hidden;
+}
+h1 a:link {
+    color: #333;
+	list-style:none;
+	text-decoration:none;
+}
+a:visited {
+    color: #335B64;
+    text-decoration: none;
+}
+
+</style>
+
+<h1>
+<span class="action-span1"><a href="index.php?act=main">天明眼镜_后台管理</a> </span><span id="search_id" class="action-span1"></span>
+<div style="clear:both"></div>
+</h1>
+
+
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+
+
+
+
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="js/jquery.bigcolorpicker.css" />
+
+
+
+
+
+   
+
+ 
+ 
+ 
+ <form method="post" action="goods.php?act=add_goods_color" name="theForm" onsubmit="return validate()" enctype="multipart/form-data">
+<div class="main-div">
+<table id="group-table" cellspacing="1" cellpadding="3" width="100%">
+  
+    <tr>
+    <td class="label">颜色值：</td>
+    <td>
+	   <input name="color" type="text" id="input_1"/>
+    </td>
+    </tr>
+    
+    
+     <tr>
+    <td class="label">颜色名：</td>
+    <td>
+	   <input type="text"  name="color_name">
+    </td>
+    </tr>
+  <tr>
+    <td class="label">图片：</td>
+    <td>
+      <input type="file" name="color_img" size="35" /> 
+    </td>
+  
+  
+  <tr>
+    <td class="label">图片(大图)：</td>
+    <td>
+      <input type="file" name="color_img1" size="35" /> 
+    </td>
+     
+ 
+  <tr>
+    <td class="label">&nbsp;</td>
+    <td>
+
+      <input name="goods_id" type="hidden" id="goods_id" value="{$goods_id}">
+      
+      <input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
+      <input type="reset" value="{$lang.button_reset}" class="button" />
+      {if $group_buy.status eq 1}
+      <input type="submit" name="finish" value="{$lang.button_finish}" class="button" onclick="return confirm('{$lang.notice_finish}')"/>
+      {elseif $group_buy.status eq 2}
+      <input type="submit" name="succeed" value="{$lang.button_succeed}" class="button" onclick="return confirm(succeed_confirm)" />{$lang.notice_succeed}<br />
+      <input type="submit" name="fail" value="{$lang.button_fail}" class="button" onclick="return confirm(fail_confirm)" />{$lang.notice_fail}
+      {elseif $group_buy.status eq 3}
+      <input type="submit" name="mail" value="{$lang.button_mail}" class="button" onclick="return confirm('{$lang.notice_mail}')" />
+      {/if}    </td>
+  </tr>
+</table>
+</div>
+</form>
+ 
+ 
+
+<script type="text/javascript" src="http://www.sucaihuo.com/Public/js/other/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.bigcolorpicker.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#input_1").bigColorpicker("input_1");
+		$("#color_button").bigColorpicker("input_2");
+		$("#square_one").bigColorpicker(function(el, color) {
+			$(el).css("background-color", color);
+		});
+		$(".square").bigColorpicker(function(el, color) {
+			$(el).css("background-color", color);
+		});
+		$("#c5").bigColorpicker("c5", "L", 3);
+	});
+</script>
+
+

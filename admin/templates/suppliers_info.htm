@@ -1,0 +1,184 @@
+<!-- $Id: agency_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="validator.js,../js/transport.js,../js/region.js"}
+
+<script type="text/javascript">
+region.isAdmin=true;
+</script>
+<div class="main-div">
+<form method="post" action="suppliers.php" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">{$lang.label_suppliers_name}</td>
+    <td><input type="text" name="suppliers_name" maxlength="60" value="{$suppliers.suppliers_name}" />{$lang.require_field}</td>
+  </tr>
+  <tr>
+    <td class="label">LOGO：</td>
+    <td>
+	<input type='file' name='logo' size='35' /> {if $suppliers.logo}<a href="{$suppliers.logo}" target="_blank"><img src="images/yes.gif" border="0"></a>{else}<img src="images/no.gif">{/if}
+	</td>
+  </tr>
+  
+  
+  
+  <tr>
+            <td class="label">所属会员</td>
+            <td>
+            {if $suppliers.suppliers_id eq ""}
+            <select name="user_id">
+           
+            <option value="0">请选择...</option>
+               <!--{foreach from=$user_list item=my_user}-->
+              <option value="{$my_user.user_id}">
+                 {$my_user.user_name}
+              </option>
+               <!--{/foreach}-->
+            </select>
+             {/if}
+             
+             {$user_name}
+            {$lang.require_field}
+            </td>
+          </tr>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <tr>
+    <td class="label">所在区域：</td>
+    <td>
+	<select name="country" id="selCountries" onChange="region.changed(this, 1, 'selProvinces')">
+        <option value="0" selected="true">{$lang.select_please}</option>
+        {foreach from=$country_list item=country}
+        <option value="{$country.region_id}" {if $suppliers.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
+        {/foreach}
+      </select> <select name="province" id="selProvinces" onChange="region.changed(this, 2, 'selCities')">
+        <option value="0">{$lang.select_please}</option>
+        {foreach from=$province_list item=province}
+        <option value="{$province.region_id}" {if $suppliers.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+        {/foreach}
+      </select> <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+          <option value="0">{$lang.select_please}</option>
+          <!-- {foreach from=$city_list item=city} -->
+          <option value="{$city.region_id}" {if $suppliers.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+          <!-- {/foreach} -->
+        </select>
+        <select name="district" id="selDistricts">
+          <option value="0">{$lang.select_please}</option>
+          <!-- {foreach from=$district_list item=district} -->
+          <option value="{$district.region_id}" {if $suppliers.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+          <!-- {/foreach} -->
+        </select>
+	</td>
+  </tr>
+  <tr>
+    <td class="label">电话：</td>
+    <td><input type="text" name="tel" value="{$suppliers.tel}" /></td>
+  </tr>
+  <tr>
+    <td class="label">工作时间：</td>
+    <td><input type="text" name="work_time" value="{$suppliers.work_time}" /></td>
+  </tr>
+  <tr>
+    <td class="label">服务箴言：</td>
+    <td><input type="text" name="service" value="{$suppliers.service}" style="width:400px"  /></td>
+  </tr>
+  <tr>
+    <td class="label">地址：</td>
+    <td><input type="text" name="address" value="{$suppliers.address}"  style="width:400px"/></td>
+  </tr>
+  <tr>
+    <td class="label">位置图片：</td>
+    <td>
+	<input type='file' name='position_img' size='35' /> {if $suppliers.position_img}<a href="{$suppliers.position_img}" target="_blank"><img src="images/yes.gif" border="0"></a>{else}<img src="images/no.gif">{/if}
+	</td>
+  </tr>
+  <tr>
+    <td class="label">交通线路：</td>
+    <td>
+	<textarea  name="line" cols="60" rows="4"  >{$suppliers.line}</textarea>
+	</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.label_suppliers_desc}</td>
+    <td><textarea  name="suppliers_desc" cols="60" rows="4"  >{$suppliers.suppliers_desc}</textarea></td>
+  </tr>
+ 
+    <tr>
+    <td class="label">地图：</td>
+       <td>
+      
+           {$FCKeditor}
+       </td>
+   </tr>
+ 
+ 
+  <tr style=" display:none">
+    <td class="label">
+    <a href="javascript:showNotice('noticeAdmins');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.label_admins}</td>
+    <td>{foreach from=$suppliers.admin_list item=admin}
+      <input type="checkbox" name="admins[]" value="{$admin.user_id}" {if $admin.type eq "this"}checked="checked"{/if} />
+      {$admin.user_name}{if $admin.type eq "other"}(*){/if}&nbsp;&nbsp;
+    {/foreach}<br />
+    <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeAdmins">{$lang.notice_admins}</span></td>
+  </tr>
+  
+  
+   
+   
+   
+  
+</table>
+
+<table align="center">
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" class="button" value="{$lang.button_submit}" />
+      <input type="reset" class="button" value="{$lang.button_reset}" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="id" value="{$suppliers.suppliers_id}" />
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+document.forms['theForm'].elements['suppliers_name'].focus();
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.required("suppliers_name",  no_suppliers_name);
+	
+	if(document.theForm.user_id.value=="0")
+	{
+		alert('没有选择会员');
+		return false;
+	}
+	
+	
+    return validator.passed();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

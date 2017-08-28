@@ -1,0 +1,60 @@
+<!-- $Id: comment_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+
+{include file="pageheader.htm"}
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script>
+$('.action-span').remove();
+</script>
+
+
+<!-- comment content list -->
+<div class="main-div">
+<table cellspacing="1" cellpadding="3" width="100%">
+ 
+  <tr>
+    <td class="label">电话：</td>
+    <td><label>{$suppliers.tel}</label></td>
+  </tr>
+  <tr>
+    <td class="label">需求：</td>
+    <td>
+    
+    <textarea readonly="readonly">{$suppliers.content}</textarea>
+    </td>
+  </tr>
+  <tr>
+   <td  colspan="2" style="text-align:center"> <a href="suppliers_yuyue.php?act=list&id={$suppliers.suppliers_id}">返回上一层</a>
+   </td>
+  </tr>
+  
+
+</table>
+
+
+
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+document.forms['theForm'].elements['content'].focus();
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    validator.required("content",  no_content);
+    return validator.passed();
+}
+
+onload = function() {
+    // 开始检查订单
+    startCheckOrder();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

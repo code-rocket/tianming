@@ -1,0 +1,36 @@
+<?php
+// database host
+$db_host   = "localhost:3306";
+
+// database name
+$db_name   = "fee_ecshop_meilele";
+
+// database username
+$db_user   = "root";
+
+// database password
+$db_pass   = "a02d122dd2";
+
+// table prefix
+$prefix    = "ecs_";
+
+$timezone    = "UTC";
+
+$cookie_path    = "/";
+
+$cookie_domain    = "";
+
+$session = "1440";
+
+define('EC_CHARSET','utf-8');
+
+// 建议修改后台路径以保网站安全 最模板 http://www.zuimoban.com 
+define('ADMIN_PATH','admin');
+
+define('AUTH_KEY', 'this is a key');
+
+define('OLD_AUTH_KEY', '');
+
+define('API_TIME', '2014-05-21 14:35:14');
+
+?>
